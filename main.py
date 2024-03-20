@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from teacher import teacher_bp
+from app import teacher_bp
 from student import student_bp
 import threading
 
