@@ -11,6 +11,7 @@ import qrcode
 from collections import Counter
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key_here"
 bcrypt = Bcrypt()
 
 # Connect to MongoDB
