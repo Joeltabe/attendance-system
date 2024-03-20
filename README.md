@@ -28,7 +28,7 @@ The Teacher-Student Attendance Management System is designed to streamline the p
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/teacher-student-attendance.git
+   git clone https://github.com/Joeltabe/attendance-system.git
    ```
 
 2. Install dependencies:
@@ -85,4 +85,4 @@ This project is provided as-is and without warranty. The developers are not liab
 
 ## Contact
 
-For support or inquiries, please contact [Project Team](mailto:joeltabe3@example.com).
+For support or inquiries, please contact [Project Developer](mailto:joeltabe3@example.com).
