@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+<h1>Courses</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">All Courses</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Total Students</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                        <tr>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.total_students }}</td>
+                            <td>
+                                <a href="{{ url_for('collect_attendance', course_code=course.code) }}" class="btn btn-primary btn-sm">Collect Attendance</a>
+                                <a href="{{ url_for('view_attendance', course_code=course.code) }}" class="btn btn-primary btn-sm">View Attendance</a>
+                                
+                                <!-- Form for Delete Button -->
+                                <form id="delete-course-form-{{ course.code }}" action="{{ url_for('delete_course', course_code=course.code) }}" method="POST" style="display: inline;">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ course.code }}')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- JavaScript for confirmation dialog -->
+<script>
+    function confirmDelete(courseCode) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form
+                document.getElementById("delete-course-form-" + courseCode).submit();
+            }
+        });
+    }
+</script>
+{% endblock %}

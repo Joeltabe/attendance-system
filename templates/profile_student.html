@@ -1,0 +1,22 @@
+{% extends "base_student.html" %}
+{% block title %}Student Profile{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Student Profile</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" value="{{ student.username }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Leave blank to keep current password">
+        </div>
+        <div class="form-group">
+            <label for="matricule">Matricule:</label>
+            <input type="text" id="matricule" name="matricule" class="form-control" value="{{ student.matricule }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

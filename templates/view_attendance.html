@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}View Attendance{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>View Attendance for {{ course.name }}</h2>
+    <form method="POST" class="mb-3">
+        <div class="form-group">
+            <label for="selected_date">Select Date:</label>
+            <input type="date" id="selected_date" name="selected_date" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_records %}
+            <tr>
+                <td>{{ record.student_name }}</td>
+                <td>{{ record.status }}</td>
+                <td>{{ record.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

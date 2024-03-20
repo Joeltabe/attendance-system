@@ -1,0 +1,29 @@
+/* styles_student.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa; /* Light grey background */
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #fff; /* Red color for the brand */
+}
+.navbar {
+    background-color: #dc3545; /* Red background for the navbar */
+}
+.navbar-nav .nav-item .nav-link {
+    color: #fff; /* Red color for the nav links */
+    transition: color 0.3s;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #fff; /* White color on hover */
+}
+.alert {
+    border-radius: 10px;
+}
+/* Add more styles as needed */
+.navbar-toggler {
+    border-color: #fff; /* Set border color to white */
+}
+.navbar-toggler-icon {
+    background-color: #fff; /* Set background color of the icon to white */
+}

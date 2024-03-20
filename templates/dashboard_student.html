@@ -1,0 +1,52 @@
+<!-- dashboard_student.html -->
+{% extends "base_student.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <p>Username: {{ student_info.username }}</p>
+            <p>Matricule: {{ student_info.matricule }}</p> <!-- Display matricule -->
+        </div>
+        <div class="card bg-danger text-white">
+            <div class="card-header">Your Courses</div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for course in student_courses %}
+                    <li class="list-group-item bg-danger">{{ course.name }}</li>
+                    {% endfor %}
+                </ul>                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card bg-danger text-white">
+            <div class="card-header">Attendance Records</div>
+            <div class="card-body">
+                {% if student_attendance %}
+                <div class="table-responsive">
+                    <table class="table table-striped text-white">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Attendance Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in student_attendance %}
+                            <tr>
+                                <td>{{ record.course_code }}</td>
+                                <td>{{ record.attendance_percentage }}%</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No attendance records available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

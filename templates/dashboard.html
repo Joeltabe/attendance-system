@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Welcome, {{ session.username }}</h1>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Your Courses</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for course in teacher_courses %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ course.name }}</span>
+                            <div>
+                                <a href="{{ url_for('generate_qr_code', course_id=course.code) }}" class="btn btn-primary btn-sm mr-2">Generate QR Code</a>
+                                <button onclick="confirmDelete('{{ course.code }}')" class="btn btn-danger btn-sm">Delete</button>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>                
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Attendance Statistics</div>
+                <div class="card-body">
+                    <p>Total Students: {{ total_students }}</p>
+                    <p>Top Present Student: {{ student_information.top_student }}</p>
+                    <p>Most Absent Student: {{ student_information.most_absent_student }}</p>
+                    <hr>
+                    <h5>Attendance Statistics by Course:</h5>
+                    <ul class="list-group">
+                        {% for course in teacher_courses %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ course.name }}</span>
+                            <span class="badge badge-primary">{{ course.attendance_percentage }}%</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Attendance History Card -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Attendance History</div>
+                <div class="card-body">
+                    <!-- Place your attendance history content here -->
+                    <p>This section will display the attendance history.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(courseCode) {
+        swal.fire({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this course!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `/delete_course/${courseCode}`;
+            }
+        });
+    }
+</script>
+
+{% endblock %}
